@@ -1,0 +1,16 @@
+
+ˆ	java:S112I"FDefine and throw a dedicated exception instead of using a generic one.(¯ÃÊº8íæåÆ2J$0837e918-2176-4ecc-a50a-e309fd4ced87
+¡
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(óû…şÿÿÿÿ8ïæåÆ2J$61414151-986b-4676-8715-12027e3f2664
+¹
+java:S1319§"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(˜‰Ó¼ıÿÿÿÿ8õÙñÇ2J$d43a1d89-67af-4900-8cfe-f8718c76bdb4
+q
+java:S1068")Remove this unused "OWNER" private field.(ã¨½¤ûÿÿÿÿ8¥çåÆ2J$b7789656-b47b-400c-ae64-cae2a6808e38
+k
+java:S1068"(Remove this unused "REPO" private field.( Ş”ä8¥çåÆ2J$167d9cf1-3962-4ba3-bdce-4a826077e989
+r
+java:S1068"*Remove this unused "BRANCH" private field.(İ¾š­ûÿÿÿÿ8¥çåÆ2J$933ffa7c-2af0-4597-b768-bd0300722acd
+u
+java:S1068"-Remove this unused "FILE_PATH" private field.(º¥Â«şÿÿÿÿ8¥çåÆ2J$9ab257c8-6f42-4feb-9601-a434b40b00ae
+z
+java:S1144+"7Remove this unused private "uploadFileToGitHub" method.(ÈÑîï8¦çåÆ2J$1763e3b0-d9d3-435c-9df9-c9757ee15368
