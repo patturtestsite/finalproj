@@ -5,6 +5,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -21,8 +22,7 @@ import org.jgrapht.graph.SimpleGraph;
 
 public class DependencyGraph {
 
-    public mxGraphComponent generateGraph(String directoryPath) throws IOException
-    {
+    public mxGraphComponent generateGraph(String directoryPath) throws IOException {
 
         // create a Path object for the specified directory
         Path directory = Paths.get(directoryPath);
@@ -33,32 +33,32 @@ public class DependencyGraph {
         //create a visited dictionary
         HashMap<String, String> visited = new HashMap<>();
 
+        ArrayList<Path> arraypath = new ArrayList<>();
+        getfiles(directory, arraypath);
         // use DirectoryStream to list files which are present in specific
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory)) {
 
             //with forEach loop get all the path of files present in directory
-            for (Path file : stream) {
-                System.out.println(file.getFileName());
+            for (Path file : arraypath) {
                 graph.addVertex(file.getFileName().toString());
                 //obtain the import statements and call makeNode for each import statement (?)
-                try (Scanner scanner = new Scanner(file)){
-                    while (scanner.hasNextLine()){
+                try (Scanner scanner = new Scanner(file)) {
+                    while (scanner.hasNextLine()) {
                         String line = scanner.nextLine().trim();
 
-                        if (line.length() >= 6){
-                            String checkString = line.substring(0,6);
-                            if (checkString.equals("import")){
+                        if (line.length() >= 6) {
+                            String checkString = line.substring(0, 6);
+                            if (checkString.equals("import")) {
                                 String library = line.substring(6);
-                                if (visited.containsKey(library)){
-                                    graph.addEdge(file.getFileName().toString(),library);
-                                }
-                                else{
+                                if (visited.containsKey(library)) {
+                                    graph.addEdge(file.getFileName().toString(), library);
+                                } else {
                                     //add the key to the dict
                                     visited.put(library, file.getFileName().toString());
                                     //add vertex
                                     graph.addVertex(library);
                                     //add edge
-                                    graph.addEdge(file.getFileName().toString(),library);
+                                    graph.addEdge(file.getFileName().toString(), library);
 
                                 }
                                 System.out.println(line); //call makeNode
@@ -81,5 +81,20 @@ public class DependencyGraph {
 
         return graphComponent;
 
+    }
+
+
+    public static void getfiles(Path directoryPath, ArrayList<Path> arraypath) throws IOException {
+        DirectoryStream<Path> stream = Files.newDirectoryStream(directoryPath); //"Celine/Downloads" []
+
+        for (Path path : stream) {
+            if (path.getFileName().toString().endsWith(".java")) {
+                arraypath.add(path);
+            } else {
+                if (Files.isDirectory(path)) {
+                    getfiles(path, arraypath);
+                }
+            }
+        }
     }
 }
