@@ -90,7 +90,7 @@ public class Controller {
     public void displayDependencyGraph() {
         DependencyGraph generator = new DependencyGraph();
         try {
-            mxGraphComponent graphComponent = generator.generateGraph(MainApplication.getFolderPath());
+            mxGraphComponent graphComponent = generator.generateGraph(MainApplication.getFolderPath()+"/src");
             System.out.println("Graph generated successfully");
 
             createAndSetSwingContent(dGraph, graphComponent);

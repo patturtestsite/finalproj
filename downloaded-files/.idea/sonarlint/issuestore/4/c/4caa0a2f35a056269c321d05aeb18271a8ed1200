@@ -1,0 +1,71 @@
+
+À
+java:S1120I"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 4.)(¼ Òşüÿÿÿÿ8şŞÑ‹2J$55735420-3ee6-436c-8bf0-2285e84b6e72
+¼
+java:S1120J"yMake this line start after 10 spaces instead of 16 in order to indent the code consistently. (Indentation level is at 4.)(ÿ½İ•8şŞÑ‹2J$6beed4a5-04e7-44c5-814d-86dfb41727e9
+º
+java:S1120a"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 4.)(¾Éø!8şŞÑ‹2J$4190d8a7-7387-49c1-b5e4-3afd3b27d596
+À
+java:S1120e"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 4.)(‚–©øÿÿÿÿ8şŞÑ‹2J$1c56b3d4-c81c-441d-8a3c-5ec667c3040f
+À
+java:S1120i"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 4.)(›ÒÜûÿÿÿÿ8şŞÑ‹2J$0e40ce93-a33a-47d4-b29a-a256bd1fc14e
+¼
+java:S1120™"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 4.)(·Ø‹«8şŞÑ‹2J$40ec280b-a85c-4d35-aead-400cb4bfb6ff
+¼
+java:S1120"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 4.)(ãÛ¡ô8şŞÑ‹2J$44af4adc-ca64-455c-9d1e-034132559876
+Á
+java:S1120¡"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 4.)(íô¡şÿÿÿÿ8şŞÑ‹2J$62aad30a-b675-4a0e-a29f-80f5c57b4f92
+¼
+java:S1120¥"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 4.)(ÊŞŒ±8şŞÑ‹2J$134c2778-6416-4cfe-901f-80d726e956e2
+¼
+java:S1120©"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 4.)(‰ü‹¼8şŞÑ‹2J$56669322-2623-4f5d-82ee-120efd989c31
+Á
+java:S1120·"xMake this line start after 8 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 4.)(”ÓÉıÿÿÿÿ8şŞÑ‹2J$a1a1ca1e-e96b-4e3a-bd15-786bf09c31f4
+²
+java:S13196"oThe type of "colorCheckBoxes" should be an interface such as "List" rather than the implementation "ArrayList".(–¿Ìù8ŞÑ‹2J$5fa34ee2-db77-44e7-971c-91d14597fcb9
+²
+java:S13197"oThe type of "shapeCheckBoxes" should be an interface such as "List" rather than the implementation "ArrayList".(£“Áï8ŞÑ‹2J$d191f13a-09ef-49ae-bfa5-f6578077a5f3
+°
+java:S1319ä"gThe type of "arrayCB" should be an interface such as "List" rather than the implementation "ArrayList".(Ê¯œ¥øÿÿÿÿ8ŞÑ‹2J$e60aba08-3d26-4e1c-a4e0-224901d1ba3c
+˜	java:S117="QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Ç©ûÿÿÿÿ8‚ŞÑ‹2J$761974c3-e528-4cb9-b60d-450596178a20
+˜	java:S117E"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ºÄäÿÿÿÿÿ8‚ŞÑ‹2J$0164caa2-e276-4961-b74e-b0b4c52e7a20
+“	java:S117X"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ÉÙø8‚ŞÑ‹2J$f53bf7bc-b262-4fe8-a94f-eb02073fd904
+˜	java:S117Y"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ«úÿÿÿÿ8‚ŞÑ‹2J$9ec0e8c5-a1e6-40b1-9589-20b82762d1cd
+“	java:S117Z"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Àì„8‚ŞÑ‹2J$07dc0dd3-2a0f-422f-aca1-85c819ad14e8
+˜	java:S117["QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶ùÕ¯ÿÿÿÿÿ8‚ŞÑ‹2J$231f1d6a-4c37-40a1-a7f8-4b2784715b9f
+k
+java:S1604G"(Make this anonymous inner class a lambda(šîÖÚ8‚ŞÑ‹2J$812af048-f8ca-4cd1-8e8e-15a1e7f59552
+
+java:S11046"[Make colorCheckBoxes a static final constant or non-public and provide accessors if needed.(–¿Ìù8…ŞÑ‹2J$74a389d3-d56e-4311-8dc4-11df40a1ba48
+
+java:S11047"[Make shapeCheckBoxes a static final constant or non-public and provide accessors if needed.(£“Áï8…ŞÑ‹2J$646d9bf9-55f2-42a0-8205-1cdc39b47278
+x
+java:S14446"5Make this "public static colorCheckBoxes" field final(–¿Ìù8…ŞÑ‹2J$97f6776e-bc43-4f8c-8dd4-f6fb786f7d57
+x
+java:S14447"5Make this "public static shapeCheckBoxes" field final(£“Áï8…ŞÑ‹2J$49df6658-9cc9-453e-aaae-124bfc17395e
+`
+java:S23866"Make this member "protected".(–¿Ìù8˜ŞÑ‹2J$b16a11db-c028-45d8-aa75-cf5e496e6497
+`
+java:S23867"Make this member "protected".(£“Áï8˜ŞÑ‹2J$2f2e5c78-f9a0-4536-b834-014aa8311870
+l
+java:S1948")Make "officer" transient or serializable.(÷Èô8˜ñôÑ‹2J$97e17f46-5f7f-463e-aaae-2bfd5f0bcbb4
+‹
+java:S3252"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(Ã–8›ŞÑ‹2J$b52ce699-6003-4336-a116-9e76308f9946
+t
+java:S1602`",Remove useless curly braces around statement(¤¢Ó÷şÿÿÿÿ8ŸŞÑ‹2J$fc281f96-4173-478b-bc21-f1dcbd9ebe59
+t
+java:S1602d",Remove useless curly braces around statement(Ù©ã±şÿÿÿÿ8ŸŞÑ‹2J$0864e6e9-69e5-4977-bf40-efdfc529ebe4
+t
+java:S1602h",Remove useless curly braces around statement(ß¼üğøÿÿÿÿ8ŸŞÑ‹2J$cf7862cc-e55a-43f1-8a3f-4b5a2e64b1e2
+p
+java:S1602˜",Remove useless curly braces around statement(•À—Ë8¢ŞÑ‹2J$5592fe7d-3941-448a-ba29-c9339e4c634a
+p
+java:S1602œ",Remove useless curly braces around statement(ãÖç8¢ŞÑ‹2J$7b6a1a5e-a968-43b6-8b34-289263e95cb7
+u
+java:S1602 ",Remove useless curly braces around statement(‰İ·‰ûÿÿÿÿ8¢ŞÑ‹2J$16fabfae-ca44-4fd9-b0bf-1f54075ae5ed
+p
+java:S1602¤",Remove useless curly braces around statement(ÔèÚ‰8£ŞÑ‹2J$4f7d2e83-48cd-460e-a62d-ac49d18dd651
+u
+java:S1602¨",Remove useless curly braces around statement(¤ü”ùÿÿÿÿ8£ŞÑ‹2J$c4b8342f-411d-4530-a84c-7ce903d3b41a
+ˆ
+java:S1854·"?Remove this useless assignment to local variable "aboutDialog".(”ÓÉıÿÿÿÿ8£ŞÑ‹2J$c9ac1be7-7579-4f8f-b070-84473db31de0

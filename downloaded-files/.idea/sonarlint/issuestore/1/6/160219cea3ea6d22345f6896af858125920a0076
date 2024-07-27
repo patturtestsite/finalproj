@@ -1,0 +1,9 @@
+
+‡
+java:S1105"?Move this left curly brace to the end of previous line of code.(ÒÌâ–øÿÿÿÿ8º€ÖÈ2J$0a04ff50-cdd6-42a7-b3f6-d041e60390e1
+®
+java:S1488P"fImmediately return this expression instead of assigning it to the temporary variable "graphComponent".(Â€ıûÿÿÿÿ8»€ÖÈ2J$65b2f5d7-1bb3-4801-ac41-6594a657a10e
+•
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(”€†â8×€ÖÈ2J$a64877e9-f971-4458-b341-f25461dc219e
+‹
+java:S11077"HMove this "else" on the same line that the previous closing curly brace.(á¢–¬8Û€ÖÈ2J$0f07e7b8-a93d-48e6-8d8d-deb42177c48e

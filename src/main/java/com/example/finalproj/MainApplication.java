@@ -14,6 +14,7 @@ import java.io.IOException;
 public class MainApplication extends Application {
     private static BooleanProperty downloading = new SimpleBooleanProperty(false);
     private static StringProperty folderPath = new SimpleStringProperty();
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main.fxml"));
