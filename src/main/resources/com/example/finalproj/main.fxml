@@ -63,7 +63,7 @@
                </Text>
             </children>
          </VBox>
-         <VBox maxHeight="615.0" prefHeight="600.0" prefWidth="600.0">
+         <VBox fx:id="Visualization" maxHeight="615.0" prefHeight="600.0" prefWidth="600.0">
             <children>
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Visualization" />
                <SwingNode fx:id="dGraph" />

@@ -28,12 +28,11 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-//        ArrayList<Path> arraypath = new ArrayList<>();
-//        Path path = Paths.get("/Users/celineha/Downloads/FinalProj/CelinieBeanie/src");
-//        DependencyGraph.getfiles(path, arraypath);
-//        for(Path path1 : arraypath) {
-//            System.out.println(path1.toString());
-//        }
+
+        Path path = Paths.get("/Users/celineha/Downloads/FinalProj/CelinieBeanie/src");
+        FileExplorer.function(path);
+
+
         launch();
 
 

@@ -10,6 +10,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.stage.DirectoryChooser;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.SwingUtilities;
@@ -17,6 +19,7 @@ import javafx.embed.swing.SwingNode;
 
 
 public class Controller {
+    public VBox Visualization;
     @FXML
     private VBox fileViewer;
 
@@ -85,13 +88,32 @@ public class Controller {
         for (String fileName : GitResources.getFileList()) {
             Button button = new Button(fileName);
             button.setPrefWidth(200);
-            button.setOnAction(e -> handleButtonAction(fileName));
+            button.setOnAction(e -> {
+                try {
+                    handleButtonAction(fileName);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
             fileViewer.getChildren().add(button);
         }
     }
 
-    private void handleButtonAction(String label) {
-        //fill in later! (Based on need)
+    private void handleButtonAction(String label) throws IOException {
+        ArrayList<String> File;
+        File = FileExplorer.function(Paths.get(MainApplication.getFolderPath()+"/"+label));
+        int size = Visualization.getChildren().toArray().length;
+        for (int i = 2; i < size; i++) {
+            Visualization.getChildren().remove(i);
+        }
+
+        for (String function : File) {
+            TextField tf = new TextField(function);
+            Visualization.getChildren().add(tf);
+
+        }
+
+
     }
 
     public void displayDependencyGraph() {
@@ -111,6 +133,7 @@ public class Controller {
 
     private void createAndSetSwingContent(SwingNode swingNode, mxGraphComponent graphComponent) {
         SwingUtilities.invokeLater(() -> swingNode.setContent(graphComponent));
+
     }
 
 }
