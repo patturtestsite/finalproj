@@ -10,6 +10,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.stage.DirectoryChooser;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.SwingUtilities;
 import javafx.embed.swing.SwingNode;
 
@@ -52,6 +54,11 @@ public class Controller {
         GitResources.getFileList().clear();
         GitResources.downloadRepo(insertLink.getText().trim(), "./downloaded-files");
         MainApplication.setFolderPath("./downloaded-files");
+
+//        HashMap<String, ArrayList<String>> dict = FileExplorer.functiondictionary("./downloaded-files");
+//        for (String key : dict.keySet()) {
+//            System.out.println(key + ": " + dict.get(key));
+//        }
     }
 
     @FXML
