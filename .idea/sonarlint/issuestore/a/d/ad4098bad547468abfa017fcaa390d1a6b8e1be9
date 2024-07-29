@@ -1,25 +1,25 @@
 
-	java:S112£"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ8¨æğç2J$201c7848-d3b5-497a-b646-f14e79537f63
-
-java:S1192q"LDefine a constant instead of duplicating this literal "codeMetrics" 3 times.(«ô†æ8ªæğç2J$353f1151-d054-45d6-b6e5-7b9c259133c6
-›
-java:S1192~"SDefine a constant instead of duplicating this literal "./downloaded-files" 3 times.(¤”å§úÿÿÿÿ8ªæğç2J$c3d39d23-1794-4a2d-ac83-43a9a172d39a
-
-java:S11920"MDefine a constant instead of duplicating this literal "fileExplorer" 4 times.(¤Ï‘8ªæğç2J$8ec36636-51a4-43e0-9136-f2778ceb8fab
-š	java:S116*"XRename this field "Visualization" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡·ÂÓ8Îæğç2J$166917be-ceab-4f6d-a2c8-4271660f7f7b
+h	java:S112£"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ8ĞÇ”è2
+i
+java:S1192q"LDefine a constant instead of duplicating this literal "codeMetrics" 3 times.(«ô†æ8ÑÇ”è2
+u
+java:S1192~"SDefine a constant instead of duplicating this literal "./downloaded-files" 3 times.(¤”å§úÿÿÿÿ8ÑÇ”è2
 j
-java:S1075Ú"&Remove this hard-coded path-delimiter.(­§¢8äæğç2J$74872ebc-f6a4-4ebb-acb3-e0f96c809f13
-Œ
-java:S1107Ş"HMove this "else" on the same line that the previous closing curly brace.(á¢–¬8åæğç2J$9121c033-2218-4f70-b7ec-8fe5a0c1cf6d
-x
-java:S1128"5Remove this unused import 'javafx.scene.image.Image'.(‰¿½Ç8€æ÷ç2J$7501ac07-c017-4d20-8ff2-2506f097b83c
-
-java:S1128"9Remove this unused import 'javafx.scene.image.ImageView'.(áÿ®Ãüÿÿÿÿ8€æ÷ç2J$27e82e50-dfcf-4ca8-bf95-8d9f38a4c480
-p
-java:S1128"(Remove this unused import 'javax.swing'.(Ìí¿Üüÿÿÿÿ8€æ÷ç2J$4ac5d21c-2210-4dd0-be7f-cfab622562d4
-s
-java:S1128"0Remove this unused import 'java.nio.file.Files'.(‚ƒü8€æ÷ç2J$d5b6dbd6-0400-462a-b170-4ae31f2c5ee2
-a
-java:S1128"Remove this duplicated import.(çß‘8èæğç2J$177e0dde-727b-4a3f-b798-9f2bb42d4f9e
-w
-java:S1144H"/Remove this unused private "initialize" method.(ˆå¶šûÿÿÿÿ8èæğç2J$90027957-fbd3-418b-a3a3-2502b4c7c22d
+java:S11920"MDefine a constant instead of duplicating this literal "fileExplorer" 4 times.(¤Ï‘8ÑÇ”è2
+t	java:S116*"XRename this field "Visualization" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡·ÂÓ8öÇ”è2
+D
+java:S1075Ú"&Remove this hard-coded path-delimiter.(­§¢8–È”è2
+f
+java:S1107Ş"HMove this "else" on the same line that the previous closing curly brace.(á¢–¬8—È”è2
+R
+java:S1128"5Remove this unused import 'javafx.scene.image.Image'.(‰¿½Ç8™È”è2
+[
+java:S1128"9Remove this unused import 'javafx.scene.image.ImageView'.(áÿ®Ãüÿÿÿÿ8™È”è2
+J
+java:S1128"(Remove this unused import 'javax.swing'.(Ìí¿Üüÿÿÿÿ8™È”è2
+M
+java:S1128"0Remove this unused import 'java.nio.file.Files'.(‚ƒü8™È”è2
+;
+java:S1128"Remove this duplicated import.(çß‘8™È”è2
+Q
+java:S1144H"/Remove this unused private "initialize" method.(ˆå¶šûÿÿÿÿ8™È”è2
