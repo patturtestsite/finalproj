@@ -1,2 +1,2 @@
-Team Project for CSC 307 
-Celine Ha, Pranay Tiru, Tenzin Konchok, Akshaj Srirambhatla
+# CSC-307-Lab-2-Game-Of-Life
+Game of Life implementation 

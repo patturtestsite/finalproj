@@ -1,22 +1,19 @@
 package com.example.finalproj;
 
 import javafx.application.Application;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class MainApplication extends Application {
-    private static BooleanProperty downloading = new SimpleBooleanProperty(false);
-    private static StringProperty folderPath = new SimpleStringProperty();
+    static final BooleanProperty downloading = new SimpleBooleanProperty(false);
+    private static final StringProperty folderPath = new SimpleStringProperty();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -27,15 +24,8 @@ public class MainApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) throws IOException {
-
-        Path path = Paths.get("/Users/celineha/Downloads/FinalProj/CelinieBeanie/src");
-        FileExplorer.function(path);
-
-
+    public static void main(String[] args) {
         launch();
-
-
     }
 
     public static BooleanProperty getDownloading() {
@@ -50,8 +40,8 @@ public class MainApplication extends Application {
         downloading.set(newVal);
     }
 
-    public static void setFolderPath(String folderPath) {
-        MainApplication.folderPath.set(folderPath);
+    public static void setFolderPath(String newPath) {
+        folderPath.set(newPath);
     }
 
     public static String getFolderPath() {

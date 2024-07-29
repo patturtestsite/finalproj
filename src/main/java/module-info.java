@@ -11,6 +11,7 @@ module com.example.finalproj {
     requires com.github.vlsi.mxgraph.jgraphx;
     requires org.jgrapht.ext;
     requires java.desktop;
+    requires org.eclipse.jgit;
 
     opens com.example.finalproj to javafx.fxml;
     exports com.example.finalproj;
