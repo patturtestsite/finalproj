@@ -10,21 +10,15 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
-import javax.swing.*;
+
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.*;
-import java.lang.reflect.Array;
-import java.lang.reflect.Method;
 import java.nio.file.Paths;
 import javax.swing.SwingUtilities;
-import javafx.embed.swing.SwingNode;
 
 
 public class Controller {
@@ -238,8 +232,9 @@ public class Controller {
     public void displayMethodCallGraph() {
         mGraphBox.setVisible(true);
         mGraph.setVisible(true);
+        MethodCallGraph methodGenerator = new MethodCallGraph();
         try {
-            mxGraphComponent graphComponent = MethodCallGraph.makeGraph(Paths.get(MainApplication.getFolderPath()));
+            mxGraphComponent graphComponent = methodGenerator.generateGraph(MainApplication.getFolderPath());
             System.out.println("Graph generated successfully");
 
             createAndSetSwingContent(mGraph, graphComponent);
