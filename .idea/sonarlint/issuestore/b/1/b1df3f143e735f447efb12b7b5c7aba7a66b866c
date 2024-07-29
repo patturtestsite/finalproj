@@ -1,0 +1,18 @@
+
+©
+java:S1319"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ÿµŸ·J$d3b98688-347a-4e72-935e-dfae4685c3bf
+Œ	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼û¤ãJ$46cc62b1-e33e-4c4f-915b-63c8e10d0472
+®
+java:S1488f"fImmediately return this expression instead of assigning it to the temporary variable "graphComponent".(Â€ıûÿÿÿÿ8¾÷îæ2J$cf798c3f-7686-473e-b864-1e5ff9931899
+ƒ
+java:S2259]"AA "NullPointerException" could be thrown; "key" is nullable here.(‹Õ¡o8«úîæ2J$a82165c2-5e3a-487a-a1c1-c0f206f00945
+{
+java:S1118":Add a private constructor to hide the implicit public one.(–½ãÿùÿÿÿÿJ$a7c64b78-931f-4a27-8c22-5eabdb8adb46
+
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ÿµŸ·J$a87e41b0-70aa-4d20-b688-86d455c42023
+¢
+java:S2178""fCorrect this "|" to "||" and extract the right operand to a variable if it should always be evaluated.(Àßø«J$90ddfa64-c49a-4864-82e5-ed55bb098f55
+|
+java:S2864R"4Iterate over the "entrySet" instead of the "keySet".(°®âüÿÿÿÿ8Àúîæ2J$3a76dd67-0c2c-411f-9c6a-77f4f8ee2da4
+l
+java:S1128	"0Remove this unused import 'java.nio.file.Paths'.(áè°¯J$ab086aaa-3d35-4dd8-820d-70b21aa85c34
