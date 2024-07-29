@@ -1,5 +1,25 @@
 
+	java:S112Š"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ8¯’Íç2J$02113640-22a3-4e53-8a5e-874a94c56916
+
+java:S1192p"LDefine a constant instead of duplicating this literal "codeMetrics" 3 times.(«ô†æ8°’Íç2J$1124841c-ed28-40f1-b162-d1644bbf0f24
+›
+java:S1192}"SDefine a constant instead of duplicating this literal "./downloaded-files" 3 times.(¤”å§úÿÿÿÿ8°’Íç2J$76ef74da-352e-4d49-8b81-908c886eb643
+
+java:S1192/"MDefine a constant instead of duplicating this literal "fileExplorer" 4 times.(¤Ï‘8°’Íç2J$54bdd595-0e5a-4325-875e-925d1d290c9d
+š	java:S116)"XRename this field "Visualization" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡·ÂÓ8Ò’Íç2J$d01f7205-1e74-4845-bb6c-3ff5fb794bb0
+j
+java:S1075Á"&Remove this hard-coded path-delimiter.(­§¢8â’Íç2J$3e485ab7-4f9e-4aa4-965b-017f81dcf0c0
+Œ
+java:S1107Å"HMove this "else" on the same line that the previous closing curly brace.(á¢–¬8â’Íç2J$0abde5e2-a55b-44e8-8c8c-beac0dabb4e6
+x
+java:S1128"5Remove this unused import 'javafx.scene.image.Image'.(‰¿½Ç8ªÎÎç2J$3decfccb-d6ad-4e61-bc7f-eaffab2b8ede
+
+java:S1128"9Remove this unused import 'javafx.scene.image.ImageView'.(áÿ®Ãüÿÿÿÿ8ªÎÎç2J$3877ff61-a856-4cef-9085-250f5a0b9165
 p
-java:S1604$"(Make this anonymous inner class a lambda(ı‹Ã²ıÿÿÿÿ8¦¯ÖÉ2J$3ed6afc0-b487-45b5-805b-c73a35577867
-t
-java:S1172V",Remove this unused method parameter "label".(Âû«ÿÿÿÿÿ8¯€”Ê2J$813786b0-3d91-4857-8bbb-aa7645fa959e
+java:S1128"(Remove this unused import 'javax.swing'.(Ìí¿Üüÿÿÿÿ8ªÎÎç2J$85eeb291-e3b9-4cd8-baef-0ae233e9bef4
+s
+java:S1128"0Remove this unused import 'java.nio.file.Files'.(‚ƒü8ªÎÎç2J$ef643856-76fb-41f5-aafa-be0f228564b6
+a
+java:S1128"Remove this duplicated import.(çß‘8ä’Íç2J$ba7ccb07-695a-46a0-a7ac-4fb68f9f0bbb
+w
+java:S1144G"/Remove this unused private "initialize" method.(ˆå¶šûÿÿÿÿ8ä’Íç2J$d640975f-388c-47aa-ba92-1a66d0bb1001

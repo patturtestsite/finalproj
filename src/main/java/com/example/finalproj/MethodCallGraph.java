@@ -17,13 +17,6 @@ import java.util.Scanner;
 
 public class MethodCallGraph {
 
-    public static void main(String[] args) throws IOException {
-        HashMap<String, ArrayList<String>> dct = populateGraphDct(Paths.get("/Users/celineha/Downloads/FinalProj/SoftwareVisualizer/src"));
-        ArrayList<String> method = new ArrayList<>();
-
-        System.out.println(method);
-    }
-
     public static HashMap<String, ArrayList<String>> populateGraphDct(Path directoryPath) throws IOException {
         ArrayList<Path> arraypath = new ArrayList<>();
         DependencyGraph.getfiles(directoryPath, arraypath);
@@ -86,8 +79,6 @@ public class MethodCallGraph {
 
         HashMap<String, String> visited = new HashMap<>();
 
-        ArrayList<Path> arraypath = new ArrayList<>();
-
         for (String key : dct.keySet()) {
             if (!visited.containsKey(key) && key != null) {
                 graph.addVertex(key);
@@ -98,17 +89,19 @@ public class MethodCallGraph {
                 if (!visited.containsKey(methodName)) {
                     graph.addVertex(methodName);
                     visited.put(methodName, null);
-
                 }
-                graph.addEdge(key, methodName);
+                if (!key.equals(methodName)) { // Check for self-loops
+                    graph.addEdge(key, methodName);
+                }
             }
-
         }
+
         JGraphXAdapter<String, DefaultEdge> graphAdapter = new JGraphXAdapter<>(graph);
         mxCircleLayout layout = new mxCircleLayout(graphAdapter);
         layout.execute(graphAdapter.getDefaultParent());
         mxGraphComponent graphComponent = new mxGraphComponent(graphAdapter);
         return graphComponent;
     }
+
 }
 

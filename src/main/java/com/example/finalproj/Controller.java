@@ -1,9 +1,14 @@
 package com.example.finalproj;
 
 import com.mxgraph.swing.mxGraphComponent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -13,12 +18,10 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
+import java.util.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.SwingUtilities;
 import javafx.embed.swing.SwingNode;
 
@@ -32,51 +35,41 @@ public class Controller {
     private TextField insertLink;
 
     @FXML
-    private TextArea commitHistoryArea;
-
-    @FXML
-    private Button insertLinkButton;
-
-    @FXML
     private Button uploadButton;
 
     @FXML
     private VBox Visualization;
 
     @FXML
-    private ScrollPane commitHistoryScrollPane;
+    private Text downloading;
+
+    @FXML
+    private String currMode = "fileExplorer";
 
     @FXML
     private SwingNode dGraph;
+
     @FXML
     private SwingNode mGraph;
 
     @FXML
-    private TableView<Commit> commitTableView;
+    private VBox oPattern;
 
     @FXML
-    private TableColumn<Commit, String> commitIdColumn;
+    private VBox cMetrics;
 
     @FXML
-    private TableColumn<Commit, String> commitMessageColumn;
+    private VBox cHistory;
 
     @FXML
-    private Text downloading;
-
+    private VBox fExplorer;
     @FXML
+    private VBox dGraphBox;
+    @FXML
+    private VBox mGraphBox;
+
     private void initialize() {
-        // Set default visibility
-        dGraph.setVisible(true);
-        mGraph.setVisible(true);
-        commitHistoryScrollPane.setVisible(false);
-
-        // Configure commitTableView columns
-        commitIdColumn.setCellValueFactory(cellData -> cellData.getValue().commitIdProperty());
-        commitMessageColumn.setCellValueFactory(cellData -> cellData.getValue().commitMessageProperty());
-
-        // Initialize data and visibility based on application state
-        updateTextVisibility();
-        MainApplication.getDownloading().addListener((observable, oldValue, newValue) -> updateTextVisibility());
+        MainApplication.getDownloading().addListener((observable, oldValue, newValue) -> showDownloading());
         MainApplication.getFolderPathProperty().addListener((observable, oldValue, newValue) -> {
             GitResources.getFileList().clear();
             GitResources.addFilesToList(newValue);
@@ -85,66 +78,146 @@ public class Controller {
     }
 
     @FXML
+    public void menuButtonHandler(ActionEvent event) {
+        for(Node n : Visualization.getChildren()) {
+            n.setVisible(false);
+        }
+        Button clickedButton = (Button) event.getSource();
+        String buttonId = clickedButton.getId();
+
+        if(MainApplication.getFolderPath() == null || MainApplication.getFolderPath().equals("")) {
+            Visualization.getChildren().add(new Label("Please upload a folder for use."));
+        } else {
+            switch (buttonId) {
+                case "fileExplorer":
+                    displayFileExplorer();
+                    currMode = "fileExplorer";
+                    break;
+                case "commitHistory":
+                    displayCommitHistory();
+                    currMode = "commitHistory";
+                    break;
+                case "dependencyGraph":
+                    displayDependencyGraph();
+                    currMode = "dependencyGraph";
+                    break;
+                case "methodCallGraph":
+                    displayMethodCallGraph();
+                    currMode = "methodCallGraph";
+                    break;
+                case "observerPattern":
+                    displayObserverPattern();
+                    currMode = "observerPattern";
+                    break;
+                case "codeMetrics":
+                    displayCodeMetrics();
+                    currMode = "codeMetrics";
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    @FXML
     protected void onInsertButtonClick() throws IOException {
         GitResources.getFileList().clear();
         GitResources.downloadRepo(insertLink.getText().trim(), "./downloaded-files");
         MainApplication.setFolderPath("./downloaded-files");
+        MainApplication.setRootFolder("./downloaded-files");
     }
 
     @FXML
-    protected void updateTextVisibility() {
+    protected void showDownloading() {
         downloading.setVisible(MainApplication.isDownloading());
     }
 
     @FXML
-    protected void showCommitHistory() {
+    protected void displayCommitHistory() {
+        cHistory.setVisible(true);
+        cHistory.getChildren().clear();
+
+        TableView<Commit> tableView = new TableView<>();
+
+        TableColumn<Commit, String> commitCol = new TableColumn<>("Commit");
+        commitCol.setCellValueFactory(new PropertyValueFactory<>("commit"));
+
+        TableColumn<Commit, String> authorCol = new TableColumn<>("Author");
+        authorCol.setCellValueFactory(new PropertyValueFactory<>("author"));
+
+        TableColumn<Commit, String> dateCol = new TableColumn<>("Date");
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+        TableColumn<Commit, String> messageCol = new TableColumn<>("Message");
+        messageCol.setCellValueFactory(new PropertyValueFactory<>("message"));
+
+        tableView.getColumns().addAll(commitCol, authorCol, dateCol, messageCol);
+
         try {
-            List<String> commits = GitResources.getCommitHistory();
-            commitTableView.getItems().clear(); // Clear existing items
-            for (String commit : commits) {
-                String[] details = commit.split(" "); // Modify this based on your commit format
-                commitTableView.getItems().add(new Commit(details[0], details[1]));
+            List<String> commitStrings = GitResources.getCommitHistory();
+            if (commitStrings.isEmpty()) {
+                cHistory.getChildren().add(new Label("No commits found."));
+            } else {
+                ObservableList<Commit> commitList = FXCollections.observableArrayList();
+                for (String commitString : commitStrings) {
+                    String[] parts = commitString.split(", ", 4);
+                    Commit commit = new Commit(parts[0].split(": ")[1],
+                            parts[1].split(": ")[1],
+                            parts[2].split(": ")[1],
+                            parts[3].split(": ")[1]);
+                    commitList.add(commit);
+                }
+                tableView.setItems(commitList);
+                cHistory.getChildren().add(tableView);
             }
-
-            // Show commit history table and hide visualization
-            dGraph.setVisible(false);
-            mGraph.setVisible(false);
-            commitHistoryScrollPane.setVisible(true);
         } catch (IOException e) {
+            cHistory.getChildren().add(new Label("Error retrieving commit history. " +
+                    "Check that the selected directory contains a git file."));
             e.printStackTrace();
-            commitHistoryArea.setText("Error fetching commit history.");
         }
-    }
-
-    @FXML
-    protected void showVisualization() {
-        // Show existing visualization and hide commit history table
-        dGraph.setVisible(true);
-        mGraph.setVisible(true);
-        commitHistoryScrollPane.setVisible(false);
     }
 
     @FXML
     protected void displayDependencyGraph() {
+        dGraphBox.setVisible(true);
+        dGraph.setVisible(true);
         DependencyGraph generator = new DependencyGraph();
         try {
             mxGraphComponent graphComponent = generator.generateGraph(MainApplication.getFolderPath());
-            createAndSetSwingContent(graphComponent);
+            createAndSetSwingContent(dGraph, graphComponent);
         } catch (IOException e) {
             e.printStackTrace();
-            Text errorText = new Text("Error generating dependency graph.");
-            Visualization.getChildren().clear();
-            Visualization.getChildren().add(errorText);
         }
     }
 
-    public void displayMethodCallGraph() {
+    @FXML
+    public void displayFileExplorer() {
+        fExplorer.setVisible(true);
+        fExplorer.getChildren().clear();
+        fExplorer.getChildren().add(new Label("Please select a file."));
+    }
 
+    @FXML
+    public void displayCodeMetrics() {
+        cMetrics.setVisible(true);
+        cMetrics.getChildren().clear();
+        cMetrics.getChildren().add(new Label("Please select a file."));
+    }
+
+    @FXML
+    public void displayObserverPattern() {
+        oPattern.setVisible(true);
+    }
+
+    @FXML
+    public void displayMethodCallGraph() {
+        mGraphBox.setVisible(true);
+        mGraph.setVisible(true);
         try {
-            mxGraphComponent graphComponent = MethodCallGraph.makeGraph(Paths.get(MainApplication.getFolderPath()+"/src"));
+            mxGraphComponent graphComponent = MethodCallGraph.makeGraph(Paths.get(MainApplication.getFolderPath()));
             System.out.println("Graph generated successfully");
 
-            createAndSetSwingContent(graphComponent);
+            createAndSetSwingContent(mGraph, graphComponent);
 
             System.out.println("Graph added to central pane");
 
@@ -153,11 +226,7 @@ public class Controller {
         }
     }
 
-    private void createAndSetSwingContent(mxGraphComponent graphComponent) {
-        Visualization.getChildren().clear();
-        SwingNode swingNode = new SwingNode();
-        Visualization.getChildren().add(swingNode);
-
+    private void createAndSetSwingContent(SwingNode swingNode, mxGraphComponent graphComponent) {
         SwingUtilities.invokeLater(() -> swingNode.setContent(graphComponent));
     }
 
@@ -170,6 +239,7 @@ public class Controller {
 
         if (file != null) {
             MainApplication.setFolderPath(file.getAbsolutePath());
+            MainApplication.setRootFolder(file.getAbsolutePath());
             refreshFileViewer();
         }
     }
@@ -184,10 +254,18 @@ public class Controller {
                 if (file.isDirectory() && !isExcludedDirectory(file)) {
                     Button dirButton = new Button("📁 " + file.getName());
                     dirButton.setOnAction(e -> handleDirectoryNavigation(file));
+                    dirButton.setPrefWidth(200);
                     fileViewer.getChildren().add(dirButton);
                 } else if (isSupportedFile(file)) {
                     Button fileButton = new Button(file.getName());
-                    fileButton.setOnAction(e -> handleFileSelection(file));
+                    fileButton.setPrefWidth(200);
+                    fileButton.setOnAction(e -> {
+                        try {
+                            handleFileSelection(file);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    });
                     fileViewer.getChildren().add(fileButton);
                 }
             }
@@ -210,10 +288,9 @@ public class Controller {
         return false;
     }
 
-    private String getFileExtension(File file) {
-        String name = file.getName();
-        int dotIndex = name.lastIndexOf('.');
-        return (dotIndex == -1) ? "" : name.substring(dotIndex + 1).toLowerCase();
+    public void returnToRoot() {
+        MainApplication.setFolderPath(MainApplication.getRootFolder());
+        refreshFileViewer();
     }
 
     private void handleDirectoryNavigation(File directory) {
@@ -221,71 +298,59 @@ public class Controller {
         refreshFileViewer();
     }
 
-    private void handleFileSelection(File file) {
-        try {
-            showFileContent(file);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
+    private void handleFileSelection(File file) throws IOException {
+        if (currMode.equals("fileExplorer")) {
+            fExplorer.getChildren().clear();
+            List<String> allMethods = FileExplorer.getMethods(MainApplication.getFolderPath()+"/"+file.getName());
 
-    private void showFileContent(File file) throws IOException {
-        Visualization.getChildren().clear();
-        if (file.isDirectory()) {
-            displayDirectoryContents(file);
-        } else {
-            String fileExtension = getFileExtension(file);
+            if (allMethods == null || allMethods.isEmpty()) {
+                fExplorer.getChildren().add(new Label("This file is not valid or contains no methods."));
+            } else {
+                TableView<String> tableView = new TableView<>();
 
-            switch (fileExtension) {
-                case "txt":
-                case "java":
-                case "md":
-                case "xml":
-                    displayTextFile(file);
-                    break;
-                case "png":
-                case "jpg":
-                case "jpeg":
-                    displayImageFile(file);
-                    break;
-                default:
-                    Text unknownType = new Text("Unsupported file type");
-                    Visualization.getChildren().add(unknownType);
+                TableColumn<String, String> methodCol = new TableColumn<>("Methods");
+                methodCol.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()));
+
+                tableView.getColumns().add(methodCol);
+                tableView.getItems().addAll(allMethods);
+
+                fExplorer.getChildren().add(tableView);
             }
-        }
-    }
-
-    private void displayTextFile(File file) throws IOException {
-        TextArea textArea = new TextArea(new String(Files.readAllBytes(file.toPath())));
-        textArea.setWrapText(true);
-        textArea.setEditable(false);
-        textArea.setPrefSize(600, 400);
-        Visualization.getChildren().add(textArea);
-    }
-
-    private void displayImageFile(File file) {
-        Image image = new Image(file.toURI().toString());
-        ImageView imageView = new ImageView(image);
-        imageView.setPreserveRatio(true);
-        imageView.setFitWidth(600);
-        Visualization.getChildren().add(imageView);
-    }
-
-    private void displayDirectoryContents(File directory) {
-        VBox directoryBox = new VBox();
-        for (File file : directory.listFiles()) {
-            if (file.isDirectory() && !isExcludedDirectory(file)) {
-                Button dirButton = new Button("📁 " + file.getName());
-                dirButton.setOnAction(e -> handleDirectoryNavigation(file));
-                directoryBox.getChildren().add(dirButton);
-            } else if (isSupportedFile(file)) {
-                Button fileButton = new Button(file.getName());
-                fileButton.setOnAction(e -> handleFileSelection(file));
-                directoryBox.getChildren().add(fileButton);
+        } else if(currMode.equals("codeMetrics")) {
+            cMetrics.getChildren().clear();
+            String filePath = MainApplication.getFolderPath()+"/"+file.getName();
+            if (!filePath.endsWith(".java")) {
+                cMetrics.getChildren().add(new Label("Please select a .java file"));
             }
+            else {
+                TableView<Metrics> tableView = new TableView<>();
+
+                TableColumn<Metrics, Integer> locCol = new TableColumn<>("Lines of Code");
+                locCol.setCellValueFactory(new PropertyValueFactory<>("linesOfCode"));
+
+                TableColumn<Metrics, Integer> elocCol = new TableColumn<>("Effective Lines of Code");
+                elocCol.setCellValueFactory(new PropertyValueFactory<>("effectiveLinesOfCode"));
+
+                TableColumn<Metrics, Integer> llocCol = new TableColumn<>("Logical Lines of Code");
+                llocCol.setCellValueFactory(new PropertyValueFactory<>("logicalLinesOfCode"));
+
+                TableColumn<Metrics, Integer> complexityCol = new TableColumn<>("Cyclomatic Complexity");
+                complexityCol.setCellValueFactory(new PropertyValueFactory<>("cyclomaticComplexity"));
+
+                tableView.getColumns().addAll(locCol, elocCol, llocCol, complexityCol);
+
+
+                int loc = SizeMetrics.countLinesOfCode(filePath);
+                int eloc = SizeMetrics.countEffectiveLinesOfCode(filePath);
+                int lloc = SizeMetrics.countLogicalLinesOfCode(filePath);
+                int cc = SizeMetrics.calculateCyclomaticComplexity(filePath);
+                Metrics metrics = new Metrics(loc, eloc, lloc, cc);
+                tableView.getItems().add(metrics);
+
+                cMetrics.getChildren().add(tableView);
+            }
+
         }
-        ScrollPane scrollPane = new ScrollPane(directoryBox);
-        scrollPane.setFitToWidth(true);
-        Visualization.getChildren().add(scrollPane);
     }
+
 }

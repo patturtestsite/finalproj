@@ -5,9 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -28,7 +25,7 @@
          </Text>
          <TextField fx:id="insertLink" minWidth="350.0" promptText="Insert Link Here">
             <HBox.margin>
-               <Insets left="200.0" />
+               <Insets left="180.0" />
             </HBox.margin>
          </TextField>
          <Button fx:id="insertLinkButton" mnemonicParsing="false" onAction="#onInsertButtonClick" text="Get Repo">
@@ -46,16 +43,28 @@
    <Line endX="700.0" endY="-0.621320366859436" startX="-100.0" />
    <ButtonBar prefHeight="40.0" prefWidth="200.0">
       <buttons>
-         <Button fx:id="dependencyGraph" mnemonicParsing="false" onAction="#displayDependencyGraph" text="Dependency Graph" />
-         <Button fx:id="showCommitHistoryButton" mnemonicParsing="false" onAction="#showCommitHistory" text="Show Commit History" />
-         <Button fx:id="methodCallGraph" mnemonicParsing="false" onAction="#displayMethodCallGraph" text="Method Call Graph"/>
+         <Button fx:id="fileExplorer" mnemonicParsing="false" onAction="#menuButtonHandler" text="File Explorer" />
+         <Button fx:id="dependencyGraph" mnemonicParsing="false" onAction="#menuButtonHandler" text="Dependency Graph" />
+         <Button fx:id="commitHistory" mnemonicParsing="false" onAction="#menuButtonHandler" text="Commit History" />
+         <Button fx:id="methodCallGraph" mnemonicParsing="false" onAction="#menuButtonHandler" text="Method Call Graph" />
+         <Button fx:id="codeMetrics" mnemonicParsing="false" onAction="#menuButtonHandler" text="Code Metrics" />
+         <Button fx:id="observerPattern" mnemonicParsing="false" onAction="#menuButtonHandler" text="Observer Pattern" />
       </buttons>
    </ButtonBar>
    <HBox prefHeight="100.0" prefWidth="200.0">
       <children>
          <VBox prefHeight="200.0" prefWidth="200.0">
             <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Files" />
+               <HBox alignment="CENTER_LEFT" maxHeight="100.0" maxWidth="200.0" prefHeight="10.0" prefWidth="200.0">
+                  <children>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Files" />
+                     <Button mnemonicParsing="false" onAction="#returnToRoot" text="Return to Root">
+                        <HBox.margin>
+                           <Insets left="70.0" />
+                        </HBox.margin>
+                     </Button>
+                  </children>
+               </HBox>
                <ScrollPane hbarPolicy="NEVER" minHeight="600.0" prefHeight="600.0" prefWidth="200.0">
                   <content>
                      <VBox fx:id="fileViewer" prefHeight="200.0" prefWidth="200.0" />
@@ -70,19 +79,38 @@
          </VBox>
          <VBox fx:id="Visualization" maxHeight="615.0" prefHeight="600.0" prefWidth="600.0">
             <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Visualization" />
-               <SwingNode fx:id="dGraph" visible="true" />
-               <SwingNode fx:id ="mGraph"/>
-               <ScrollPane fx:id="commitHistoryScrollPane" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="600.0" visible="false">
-                  <content>
-                     <TableView fx:id="commitTableView">
-                        <columns>
-                           <TableColumn fx:id="commitIdColumn" text="Commit ID" />
-                           <TableColumn fx:id="commitMessageColumn" text="Commit Message" />
-                        </columns>
-                     </TableView>
-                  </content>
-               </ScrollPane>
+               <VBox fx:id="cHistory" maxWidth="600.0" prefHeight="600.0" prefWidth="600.0" />
+               <VBox fx:id="fExplorer" prefHeight="600.0" prefWidth="100.0">
+                  <VBox.margin>
+                     <Insets top="-600.0" />
+                  </VBox.margin>
+               </VBox>
+               <VBox fx:id="cMetrics" prefHeight="600.0" prefWidth="100.0">
+                  <VBox.margin>
+                     <Insets top="-600.0" />
+                  </VBox.margin>
+               </VBox>
+               <VBox fx:id="oPattern" prefHeight="600.0" prefWidth="100.0">
+                  <VBox.margin>
+                     <Insets top="-600.0" />
+                  </VBox.margin>
+               </VBox>
+               <VBox fx:id="mGraphBox" prefHeight="600.0" prefWidth="100.0">
+                  <children>
+                     <SwingNode fx:id="mGraph" />
+                  </children>
+                  <VBox.margin>
+                     <Insets top="-600.0" />
+                  </VBox.margin>
+               </VBox>
+               <VBox fx:id="dGraphBox" prefHeight="600.0" prefWidth="100.0">
+                  <children>
+                     <SwingNode fx:id="dGraph" visible="true" />
+                  </children>
+                  <VBox.margin>
+                     <Insets top="-600.0" />
+                  </VBox.margin>
+               </VBox>
             </children>
          </VBox>
       </children>

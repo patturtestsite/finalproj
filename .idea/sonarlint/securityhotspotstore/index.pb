@@ -1,14 +1,6 @@
 
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-c
-3src/main/java/com/example/finalproj/Controller.java,a/d/ad4098bad547468abfa017fcaa390d1a6b8e1be9
-h
-8src/main/java/com/example/finalproj/MainApplication.java,a/5/a5755ba60d7b699bb69f865e857a70ce2f6ee9ff
-e
-5src/main/java/com/example/finalproj/GitResources.java,a/9/a9c74a3b7d91d25ef3fa805b61ccaf5d3a3717cc
-h
-8src/main/java/com/example/finalproj/DependencyGraph.java,1/6/160219cea3ea6d22345f6896af858125920a0076
 N
 src/main/java/module-info.java,1/c/1c89a5491fbfda3fb050196d6a239f20200296e7
 4
@@ -60,3 +52,23 @@ G.idea/sonarlint/issuestore/1/c/1c89a5491fbfda3fb050196d6a239f20200296e7,a/2/a2
 Q.idea/sonarlint/securityhotspotstore/1/6/160219cea3ea6d22345f6896af858125920a0076,0/e/0e1af024c762d94700e3325e76b88693f1815de3
 w
 G.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302,e/d/ed67eb178d523a4b3f117dcbe0eda5196367ceec
+h
+8src/main/java/com/example/finalproj/MainApplication.java,a/5/a5755ba60d7b699bb69f865e857a70ce2f6ee9ff
+o
+?src/main/java/com/example/finalproj/CommitHistoryDashboard.java,3/c/3caf7f3e1c805d3e1f5c77cc2c8ccc3cfa0303da
+c
+3src/main/java/com/example/finalproj/Controller.java,a/d/ad4098bad547468abfa017fcaa390d1a6b8e1be9
+_
+/src/main/java/com/example/finalproj/Commit.java,c/c/cc11a4796075d0aa03e3e922f36fddf95f3002ae
+e
+5src/main/java/com/example/finalproj/GitResources.java,a/9/a9c74a3b7d91d25ef3fa805b61ccaf5d3a3717cc
+e
+5src/main/java/com/example/finalproj/FileExplorer.java,1/0/100ed87e00d09b6da6b3f7cabcd2bdb58de1529e
+d
+4src/main/java/com/example/finalproj/SizeMetrics.java,e/1/e1c52cc1f0e5305a0ebb68132a7dbc9f02c304b3
+`
+0src/main/java/com/example/finalproj/Metrics.java,6/d/6db222470fd336f644d04542e2bb789a81fccbd6
+h
+8src/main/java/com/example/finalproj/MethodCallGraph.java,b/1/b1df3f143e735f447efb12b7b5c7aba7a66b866c
+p
+@src/main/java/com/example/finalproj/ObserverPatternDetector.java,4/9/49849727e5a28efeaff8f2eec7d1490787a6c1de

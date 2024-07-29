@@ -99,14 +99,18 @@ public class GitResources {
     }
 
     public static List<String> getCommitHistory() throws IOException {
-        // Retrieve the commit history from the Git repository
         Path gitDir = Paths.get(getFolderPath(), ".git");
         if (Files.exists(gitDir)) {
-            ProcessBuilder pb = new ProcessBuilder("git", "log", "--oneline");
+            // Use a more detailed git log format
+            ProcessBuilder pb = new ProcessBuilder("git", "log", "--pretty=format:%h %an %ad %s", "--date=short");
             pb.directory(gitDir.toFile());
             Process process = pb.start();
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
-                return reader.lines().toList();
+                return reader.lines().map(line -> {
+                    String[] parts = line.split(" ", 4);
+                    return String.format("Commit: %s, Author: %s, Date: %s, Message: %s",
+                            parts[0], parts[1], parts[2], parts[3]);
+                }).toList();
             }
         }
         throw new IOException("Git repository not found.");

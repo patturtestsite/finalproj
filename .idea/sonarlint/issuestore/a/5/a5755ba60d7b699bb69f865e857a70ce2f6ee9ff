@@ -1,0 +1,11 @@
+
+¯
+java:S1130 "lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø8ÆÍˆç2J$dce9109d-7b67-4679-8733-cdf6c273aa44
+r
+java:S1128"/Remove this unused import 'java.nio.file.Path'.(×²êÂ8½úŒç2J$3c20e077-5792-4f7f-a936-03f19eb508fd
+s
+java:S1128"0Remove this unused import 'java.nio.file.Paths'.(áè°¯8½úŒç2J$a29186e9-d5c7-45a0-8c2e-6cda7beaf9b0
+s
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8½úŒç2J$76d550e1-8469-4925-84db-bd2202e50268
+v
+java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8½úŒç2J$a126e232-6bf4-40ce-bdbe-3ec2908f12b1

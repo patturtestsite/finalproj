@@ -18,6 +18,7 @@ import java.util.HashMap;
 public class MainApplication extends Application {
     static final BooleanProperty downloading = new SimpleBooleanProperty(false);
     private static final StringProperty folderPath = new SimpleStringProperty();
+    private static String rootFolder;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -46,6 +47,14 @@ public class MainApplication extends Application {
 
     public static void setFolderPath(String newPath) {
         folderPath.set(newPath);
+    }
+
+    public static void setRootFolder(String rFolder) {
+        rootFolder = rFolder;
+    }
+
+    public static String getRootFolder() {
+        return rootFolder;
     }
 
     public static String getFolderPath() {
