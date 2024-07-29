@@ -17,6 +17,12 @@ public class FileExplorer {
                 if (line.length() >= 6) {
                     String isAFunction = line.substring(0, 6).trim();
                     if (isAFunction.equals("public") | isAFunction.equals("private")) {
+                        if (isAFunction.equals("public")){
+                            line =  "+" + line;
+                        }
+                        else {
+                            line = "-" + line;
+                        }
                         line=line.replace("{","");
                         functions.add(line);
                     }

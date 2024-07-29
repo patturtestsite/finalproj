@@ -49,6 +49,7 @@
          <Button fx:id="dependencyGraph" mnemonicParsing="false" onAction="#displayDependencyGraph" text="Dependency Graph" />
          <Button fx:id="showCommitHistoryButton" mnemonicParsing="false" onAction="#showCommitHistory" text="Show Commit History" />
          <Button fx:id="methodCallGraph" mnemonicParsing="false" onAction="#displayMethodCallGraph" text="Method Call Graph"/>
+         <Button fx:id="functionView" mnemonicParsing="false" onAction="#functionView" text="Function View"/>
       </buttons>
    </ButtonBar>
    <HBox prefHeight="100.0" prefWidth="200.0">

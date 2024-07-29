@@ -2,6 +2,7 @@ package com.example.finalproj;
 
 import com.mxgraph.swing.mxGraphComponent;
 import javafx.embed.swing.SwingNode;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -9,19 +10,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
-import java.lang.reflect.Array;
-import java.lang.reflect.Method;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.nio.file.Paths;
 import javax.swing.SwingUtilities;
-import javafx.embed.swing.SwingNode;
-
 
 public class Controller {
 
@@ -63,6 +58,8 @@ public class Controller {
     @FXML
     private Text downloading;
 
+    private Boolean functionView = false;
+
     @FXML
     private void initialize() {
         // Set default visibility
@@ -82,6 +79,8 @@ public class Controller {
             GitResources.addFilesToList(newValue);
             refreshFileViewer();
         });
+
+
     }
 
     @FXML
@@ -135,6 +134,7 @@ public class Controller {
             Text errorText = new Text("Error generating dependency graph.");
             Visualization.getChildren().clear();
             Visualization.getChildren().add(errorText);
+
         }
     }
 
@@ -223,7 +223,12 @@ public class Controller {
 
     private void handleFileSelection(File file) {
         try {
-            showFileContent(file);
+            if (functionView){
+                displayFunctions(file.getName());
+            }
+            else {
+                showFileContent(file);
+            }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -287,5 +292,30 @@ public class Controller {
         ScrollPane scrollPane = new ScrollPane(directoryBox);
         scrollPane.setFitToWidth(true);
         Visualization.getChildren().add(scrollPane);
+    }
+
+    public void displayFunctions(String label) throws IOException {
+        ArrayList<String> File;
+        File = FileExplorer.function(Paths.get(MainApplication.getFolderPath()+"/"+label));
+        int size = Visualization.getChildren().toArray().length;
+
+        Object[] arr = Visualization.getChildren().toArray();
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("index: " + i + " " + arr[i]);
+        }
+
+        for (int i = 0; i < size; i++) {
+            Visualization.getChildren().remove(i);
+        }
+
+        for (String function : File) {
+            TextField tf = new TextField(function);
+            Visualization.getChildren().add(tf);
+
+        }
+    }
+
+    public void functionView(ActionEvent actionEvent) {
+        functionView = !functionView;
     }
 }
