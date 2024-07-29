@@ -18,7 +18,7 @@ import org.jgrapht.graph.SimpleGraph;
  **/
 
 
-public class DependencyGraph {
+public class DependencyGraph implements Graph{
 
     public mxGraphComponent generateGraph(String directoryPath) throws IOException {
         Path directory = Paths.get(directoryPath);

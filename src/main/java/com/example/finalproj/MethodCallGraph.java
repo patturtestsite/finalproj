@@ -15,7 +15,7 @@ import java.util.Scanner;
 * Displays a graph of method calls
 * @author: Celine Ha */
 
-public class MethodCallGraph {
+public class MethodCallGraph implements Graph {
 
     public static HashMap<String, ArrayList<String>> populateGraphDct(Path directoryPath) throws IOException {
         ArrayList<Path> arraypath = new ArrayList<>();
@@ -72,7 +72,8 @@ public class MethodCallGraph {
         return null;
     }
 
-    public static mxGraphComponent makeGraph(Path directoryPath) throws IOException {
+    public mxGraphComponent generateGraph(String directory) throws IOException {
+        Path directoryPath = Paths.get(directory);
         HashMap<String, ArrayList<String>> dct = populateGraphDct(directoryPath);
 
         SimpleGraph<String, DefaultEdge> graph = new SimpleGraph<>(DefaultEdge.class);
