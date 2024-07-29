@@ -1,6 +1,7 @@
 package com.example.finalproj;
 
 import com.mxgraph.swing.mxGraphComponent;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
@@ -78,7 +79,7 @@ public class Controller {
     }
 
     @FXML
-    public void menuButtonHandler(ActionEvent event) {
+    public void menuButtonHandler(ActionEvent event) throws IOException {
         for(Node n : Visualization.getChildren()) {
             n.setVisible(false);
         }
@@ -205,8 +206,32 @@ public class Controller {
     }
 
     @FXML
-    public void displayObserverPattern() {
+    public void displayObserverPattern() throws IOException {
         oPattern.setVisible(true);
+        List<File> files = ObserverPatternDetector.detectObserverPattern(new File(MainApplication.getFolderPath()));
+
+        if (files.isEmpty()) {
+            oPattern.getChildren().clear();
+            oPattern.getChildren().add(new Label("Observer Pattern not detected."));
+        } else {
+            oPattern.getChildren().clear();
+            oPattern.getChildren().add(new Label("Observer Pattern may be in use. These are the classes that " +
+                    "may make use of it"));
+
+            TableView<File> fileTable = new TableView<>();
+            TableColumn<File, String> fileColumn = new TableColumn<>("Files");
+            fileColumn.setCellValueFactory(cellData -> {
+                File file = cellData.getValue();
+                return new ReadOnlyObjectWrapper<>(file.getPath());
+            });
+
+            fileTable.getColumns().add(fileColumn);
+
+            ObservableList<File> observableFiles = FXCollections.observableArrayList(files);
+            fileTable.setItems(observableFiles);
+
+            oPattern.getChildren().add(fileTable);
+        }
     }
 
     @FXML
