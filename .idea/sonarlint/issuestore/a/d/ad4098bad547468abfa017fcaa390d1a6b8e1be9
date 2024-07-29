@@ -1,25 +1,23 @@
 
-h	java:S112£"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ8ĞÇ”è2
-i
-java:S1192q"LDefine a constant instead of duplicating this literal "codeMetrics" 3 times.(«ô†æ8ÑÇ”è2
-u
-java:S1192~"SDefine a constant instead of duplicating this literal "./downloaded-files" 3 times.(¤”å§úÿÿÿÿ8ÑÇ”è2
+	java:S112¥"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ8§†úè2J$321ff739-3e67-4e70-b22a-17d310dde8f1
+
+java:S1192s"LDefine a constant instead of duplicating this literal "codeMetrics" 3 times.(«ô†æ8¨†úè2J$73fdbd70-054b-4bb3-b477-8ba4bb58d84c
+œ
+java:S1192€"SDefine a constant instead of duplicating this literal "./downloaded-files" 3 times.(¤”å§úÿÿÿÿ8¨†úè2J$fe787925-3029-4170-9fef-a1ea8d1e429d
+
+java:S11920"MDefine a constant instead of duplicating this literal "fileExplorer" 4 times.(¤Ï‘8¨†úè2J$e7094a73-9dc2-4bf5-a771-0bfbba781f02
+š	java:S116*"XRename this field "Visualization" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡·ÂÓ8Ì†úè2J$b71371af-f921-42e4-9863-8bd05c71f7d5
 j
-java:S11920"MDefine a constant instead of duplicating this literal "fileExplorer" 4 times.(¤Ï‘8ÑÇ”è2
-t	java:S116*"XRename this field "Visualization" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡·ÂÓ8öÇ”è2
-D
-java:S1075Ú"&Remove this hard-coded path-delimiter.(­§¢8–È”è2
-f
-java:S1107Ş"HMove this "else" on the same line that the previous closing curly brace.(á¢–¬8—È”è2
-R
-java:S1128"5Remove this unused import 'javafx.scene.image.Image'.(‰¿½Ç8™È”è2
-[
-java:S1128"9Remove this unused import 'javafx.scene.image.ImageView'.(áÿ®Ãüÿÿÿÿ8™È”è2
-J
-java:S1128"(Remove this unused import 'javax.swing'.(Ìí¿Üüÿÿÿÿ8™È”è2
-M
-java:S1128"0Remove this unused import 'java.nio.file.Files'.(‚ƒü8™È”è2
-;
-java:S1128"Remove this duplicated import.(çß‘8™È”è2
-Q
-java:S1144H"/Remove this unused private "initialize" method.(ˆå¶šûÿÿÿÿ8™È”è2
+java:S1075Ü"&Remove this hard-coded path-delimiter.(­§¢8İ†úè2J$0567f7e0-a40e-4556-9052-3c3151c16ff2
+x
+java:S1128"5Remove this unused import 'javafx.scene.image.Image'.(‰¿½Ç8ä…•é2J$91f71050-32f6-4de8-ac3b-0f2891a0509d
+
+java:S1128"9Remove this unused import 'javafx.scene.image.ImageView'.(áÿ®Ãüÿÿÿÿ8ä…•é2J$92f0b750-fb4f-45a6-a0bc-a0f541fd4f23
+p
+java:S1128"(Remove this unused import 'javax.swing'.(Ìí¿Üüÿÿÿÿ8Ìãˆé2J$10d4d324-d0c2-4d29-aecb-ca22e4944ac0
+s
+java:S1128"0Remove this unused import 'java.nio.file.Files'.(‚ƒü8Ìãˆé2J$5093fda2-9dc4-4fe6-9bbd-3b5cc94435a5
+a
+java:S1128"Remove this duplicated import.(çß‘8à†úè2J$85761001-e850-48c8-baa9-d93e444f6c54
+w
+java:S1144J"/Remove this unused private "initialize" method.(ˆå¶šûÿÿÿÿ8à†úè2J$525b39f0-025d-4624-8c0d-961820fc203c

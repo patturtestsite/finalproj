@@ -68,6 +68,8 @@ public class Controller {
     private VBox dGraphBox;
     @FXML
     private VBox mGraphBox;
+    private Metrics firstFileMetrics;
+    private boolean firstFileSelected = false;
 
     private void initialize() {
         MainApplication.getDownloading().addListener((observable, oldValue, newValue) -> showDownloading());
@@ -87,7 +89,7 @@ public class Controller {
         String buttonId = clickedButton.getId();
 
         if(MainApplication.getFolderPath() == null || MainApplication.getFolderPath().equals("")) {
-            Visualization.getChildren().add(new Label("Please upload a folder for use."));
+            System.out.println("Please upload a folder for use.");
         } else {
             switch (buttonId) {
                 case "fileExplorer":
@@ -323,59 +325,72 @@ public class Controller {
         refreshFileViewer();
     }
 
+    @FXML
     private void handleFileSelection(File file) throws IOException {
         if (currMode.equals("fileExplorer")) {
+            // Existing file explorer logic
             fExplorer.getChildren().clear();
-            List<String> allMethods = FileExplorer.getMethods(MainApplication.getFolderPath()+"/"+file.getName());
+            List<String> allMethods = FileExplorer.getMethods(MainApplication.getFolderPath() + "/" + file.getName());
 
             if (allMethods == null || allMethods.isEmpty()) {
                 fExplorer.getChildren().add(new Label("This file is not valid or contains no methods."));
             } else {
                 TableView<String> tableView = new TableView<>();
-
                 TableColumn<String, String> methodCol = new TableColumn<>("Methods");
-                methodCol.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue()));
-
+                methodCol.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()));
                 tableView.getColumns().add(methodCol);
                 tableView.getItems().addAll(allMethods);
-
                 fExplorer.getChildren().add(tableView);
             }
-        } else if(currMode.equals("codeMetrics")) {
+
+        } else if (currMode.equals("codeMetrics")) {
             cMetrics.getChildren().clear();
-            String filePath = MainApplication.getFolderPath()+"/"+file.getName();
+            String filePath = MainApplication.getFolderPath() + "/" + file.getName();
+
             if (!filePath.endsWith(".java")) {
                 cMetrics.getChildren().add(new Label("Please select a .java file"));
+            } else {
+                Metrics metrics = SizeMetrics.calculateMetrics(filePath);
+
+                if (!firstFileSelected) {
+                    firstFileMetrics = metrics;
+                    firstFileSelected = true;
+
+                    TableView<Metrics> tableView1 = createMetricsTable(metrics);
+                    cMetrics.getChildren().add(tableView1);
+                    cMetrics.getChildren().add(new Label("Please select another file for comparison."));
+                } else {
+                    TableView<Metrics> tableView2 = createMetricsTable(metrics);
+                    cMetrics.getChildren().add(tableView2);
+
+                    cMetrics.getChildren().add(new Label(SizeMetrics.compareMetrics(firstFileMetrics, metrics)));
+                    firstFileSelected = false;  // Reset for next comparison
+                }
             }
-            else {
-                TableView<Metrics> tableView = new TableView<>();
-
-                TableColumn<Metrics, Integer> locCol = new TableColumn<>("Lines of Code");
-                locCol.setCellValueFactory(new PropertyValueFactory<>("linesOfCode"));
-
-                TableColumn<Metrics, Integer> elocCol = new TableColumn<>("Effective Lines of Code");
-                elocCol.setCellValueFactory(new PropertyValueFactory<>("effectiveLinesOfCode"));
-
-                TableColumn<Metrics, Integer> llocCol = new TableColumn<>("Logical Lines of Code");
-                llocCol.setCellValueFactory(new PropertyValueFactory<>("logicalLinesOfCode"));
-
-                TableColumn<Metrics, Integer> complexityCol = new TableColumn<>("Cyclomatic Complexity");
-                complexityCol.setCellValueFactory(new PropertyValueFactory<>("cyclomaticComplexity"));
-
-                tableView.getColumns().addAll(locCol, elocCol, llocCol, complexityCol);
-
-
-                int loc = SizeMetrics.countLinesOfCode(filePath);
-                int eloc = SizeMetrics.countEffectiveLinesOfCode(filePath);
-                int lloc = SizeMetrics.countLogicalLinesOfCode(filePath);
-                int cc = SizeMetrics.calculateCyclomaticComplexity(filePath);
-                Metrics metrics = new Metrics(loc, eloc, lloc, cc);
-                tableView.getItems().add(metrics);
-
-                cMetrics.getChildren().add(tableView);
-            }
-
         }
+    }
+
+
+
+    private TableView<Metrics> createMetricsTable(Metrics metrics) {
+        TableView<Metrics> tableView = new TableView<>();
+
+        TableColumn<Metrics, Integer> locCol = new TableColumn<>("Lines of Code");
+        locCol.setCellValueFactory(new PropertyValueFactory<>("linesOfCode"));
+
+        TableColumn<Metrics, Integer> elocCol = new TableColumn<>("Effective Lines of Code");
+        elocCol.setCellValueFactory(new PropertyValueFactory<>("effectiveLinesOfCode"));
+
+        TableColumn<Metrics, Integer> llocCol = new TableColumn<>("Logical Lines of Code");
+        llocCol.setCellValueFactory(new PropertyValueFactory<>("logicalLinesOfCode"));
+
+        TableColumn<Metrics, Integer> complexityCol = new TableColumn<>("Cyclomatic Complexity");
+        complexityCol.setCellValueFactory(new PropertyValueFactory<>("cyclomaticComplexity"));
+
+        tableView.getColumns().addAll(locCol, elocCol, llocCol, complexityCol);
+        tableView.getItems().add(metrics);
+
+        return tableView;
     }
 
 }

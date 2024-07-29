@@ -108,4 +108,26 @@ public class SizeMetrics {
 
         return complexity;
     }
+
+    public static Metrics calculateMetrics(String filePath) throws IOException {
+        int loc = SizeMetrics.countLinesOfCode(filePath);
+        int eloc = SizeMetrics.countEffectiveLinesOfCode(filePath);
+        int lloc = SizeMetrics.countLogicalLinesOfCode(filePath);
+        int cc = SizeMetrics.calculateCyclomaticComplexity(filePath);
+        return new Metrics(loc, eloc, lloc, cc);
+    }
+
+    public static String compareMetrics(Metrics metrics1, Metrics metrics2) {
+        String comparisonResult = "Comparison Results:\n";
+
+        if (metrics1.getLinesOfCode() + metrics1.getEffectiveLinesOfCode() + metrics1.getLogicalLinesOfCode()
+                + metrics1.getCyclomaticComplexity() < metrics2.getLinesOfCode() + metrics2.getEffectiveLinesOfCode()
+                + metrics2.getLogicalLinesOfCode() + metrics2.getCyclomaticComplexity()) {
+            comparisonResult += "File 1 is less complex than File 2 (and potentially better). \n";
+        } else if (metrics1.getLinesOfCode() > metrics2.getLinesOfCode()) {
+            comparisonResult += "File 2 is less complex than File 1 (and potentially better). \n";
+        }
+
+        return comparisonResult;
+    }
 }
