@@ -10,6 +10,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainApplication extends Application {
     static final BooleanProperty downloading = new SimpleBooleanProperty(false);
@@ -24,7 +28,7 @@ public class MainApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         launch();
     }
 

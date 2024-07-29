@@ -14,6 +14,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+import java.lang.reflect.Array;
+import java.lang.reflect.Method;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.SwingUtilities;
+import javafx.embed.swing.SwingNode;
+
 
 public class Controller {
 
@@ -40,6 +48,8 @@ public class Controller {
 
     @FXML
     private SwingNode dGraph;
+    @FXML
+    private SwingNode mGraph;
 
     @FXML
     private TableView<Commit> commitTableView;
@@ -57,6 +67,7 @@ public class Controller {
     private void initialize() {
         // Set default visibility
         dGraph.setVisible(true);
+        mGraph.setVisible(true);
         commitHistoryScrollPane.setVisible(false);
 
         // Configure commitTableView columns
@@ -97,6 +108,7 @@ public class Controller {
 
             // Show commit history table and hide visualization
             dGraph.setVisible(false);
+            mGraph.setVisible(false);
             commitHistoryScrollPane.setVisible(true);
         } catch (IOException e) {
             e.printStackTrace();
@@ -108,6 +120,7 @@ public class Controller {
     protected void showVisualization() {
         // Show existing visualization and hide commit history table
         dGraph.setVisible(true);
+        mGraph.setVisible(true);
         commitHistoryScrollPane.setVisible(false);
     }
 
@@ -122,6 +135,21 @@ public class Controller {
             Text errorText = new Text("Error generating dependency graph.");
             Visualization.getChildren().clear();
             Visualization.getChildren().add(errorText);
+        }
+    }
+
+    public void displayMethodCallGraph() {
+
+        try {
+            mxGraphComponent graphComponent = MethodCallGraph.makeGraph(Paths.get(MainApplication.getFolderPath()+"/src"));
+            System.out.println("Graph generated successfully");
+
+            createAndSetSwingContent(graphComponent);
+
+            System.out.println("Graph added to central pane");
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -203,7 +231,6 @@ public class Controller {
 
     private void showFileContent(File file) throws IOException {
         Visualization.getChildren().clear();
-
         if (file.isDirectory()) {
             displayDirectoryContents(file);
         } else {
